@@ -11,6 +11,7 @@ import com.gupaoedu.vip.spring.framework.annotation.GPAutowired;
 import com.gupaoedu.vip.spring.framework.annotation.GPController;
 import com.gupaoedu.vip.spring.framework.annotation.GPRequestMapping;
 import com.gupaoedu.vip.spring.framework.annotation.GPRequestParam;
+import com.gupaoedu.vip.spring.framework.webmvc.servlet.GPModelAndView;
 
 /**
  * 公布接口url
@@ -25,42 +26,43 @@ public class MyAction {
 	@GPAutowired IModifyService modifyService;
 
 	@GPRequestMapping("/query.json")
-	public void query(HttpServletRequest request, HttpServletResponse response,
+	public GPModelAndView query(HttpServletRequest request, HttpServletResponse response,
 								@GPRequestParam("name") String name){
 		String result = queryService.query(name);
-		out(response,result);
+		return out(response,result);
 	}
 	
 	@GPRequestMapping("/add*.json")
-	public void add(HttpServletRequest request,HttpServletResponse response,
+	public GPModelAndView add(HttpServletRequest request,HttpServletResponse response,
 			   @GPRequestParam("name") String name,@GPRequestParam("addr") String addr){
 		String result = modifyService.add(name,addr);
-		out(response,result);
+		return out(response,result);
 	}
 	
 	@GPRequestMapping("/remove.json")
-	public void remove(HttpServletRequest request,HttpServletResponse response,
+	public GPModelAndView remove(HttpServletRequest request,HttpServletResponse response,
 		   @GPRequestParam("id") Integer id){
 		String result = modifyService.remove(id);
-		out(response,result);
+		return out(response,result);
 	}
 	
 	@GPRequestMapping("/edit.json")
-	public void edit(HttpServletRequest request,HttpServletResponse response,
+	public GPModelAndView edit(HttpServletRequest request,HttpServletResponse response,
 			@GPRequestParam("id") Integer id,
 			@GPRequestParam("name") String name){
 		String result = modifyService.edit(id,name);
-		out(response,result);
+		return out(response,result);
 	}
 	
 	
 	
-	private void out(HttpServletResponse resp,String str){
+	private GPModelAndView out(HttpServletResponse resp,String str){
 		try {
 			resp.getWriter().write(str);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 }
