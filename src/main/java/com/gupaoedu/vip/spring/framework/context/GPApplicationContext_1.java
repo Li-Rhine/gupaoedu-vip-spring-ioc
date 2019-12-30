@@ -73,7 +73,7 @@ public class GPApplicationContext_1 {
                 throw new Exception("The " + beanDefinition.getFactoryBeanName() + " is exists!");
             }
             this.beanDefinitionMap.put(beanDefinition.getFactoryBeanName(), beanDefinition);
-            this.beanDefinitionMap.put(beanDefinition.getBeanClassName(), beanDefinition);
+//            this.beanDefinitionMap.put(beanDefinition.getBeanClassName(), beanDefinition);
         }
     }
 

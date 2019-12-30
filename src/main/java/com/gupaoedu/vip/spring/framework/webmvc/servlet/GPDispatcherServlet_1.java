@@ -75,7 +75,7 @@ public class GPDispatcherServlet_1 extends HttpServlet {
         processDispatchResult(req, resp, mv);
     }
 
-    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, GPModelAndView mv) {
+    private void processDispatchResult(HttpServletRequest req, HttpServletResponse resp, GPModelAndView mv) throws Exception {
         if (null == mv) {
             return;
         }
